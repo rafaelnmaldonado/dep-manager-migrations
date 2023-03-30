@@ -1,5 +1,5 @@
 ﻿using dep_manager_singleton.Entities;
-using dep_manager_singleton.Persistance;
+using dep_manager_singleton.Persistence;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dep_manager_singleton.Controllers
@@ -39,7 +39,7 @@ namespace dep_manager_singleton.Controllers
         [HttpGet("dep/{idDep}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetByDep(Guid idDep)
+        public IActionResult GetByDep(int idDep)
         {
             var employees = _context.Employees.Where(emp => emp.IdDepartment == idDep).ToList();
 
@@ -58,7 +58,7 @@ namespace dep_manager_singleton.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(int id)
         {
             var employee = _context.Employees.SingleOrDefault(emp => emp.Id == id);
 
@@ -100,7 +100,7 @@ namespace dep_manager_singleton.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Update(Guid id, Employee input)
+        public IActionResult Update(int id, Employee input)
         {
             var employee = _context.Employees.SingleOrDefault(emp => emp.Id == id);
 
@@ -124,7 +124,7 @@ namespace dep_manager_singleton.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(int id)
         {
             var employee = _context.Employees.SingleOrDefault(emp => emp.Id == id);
 

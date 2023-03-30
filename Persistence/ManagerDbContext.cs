@@ -1,7 +1,7 @@
 ﻿using dep_manager_singleton.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace dep_manager_singleton.Persistance
+namespace dep_manager_singleton.Persistence
 {
     public class ManagerDbContext : DbContext
     {
@@ -32,8 +32,23 @@ namespace dep_manager_singleton.Persistance
             builder.Entity<Employee>(e =>
             {
                 e.HasKey(emp => emp.Id);
+
+                e.Property(emp => emp.Name)
+                    .IsRequired(false)
+                    .HasColumnType("VARCHAR(255)");
+
+                e.Property(emp => emp.Picture)
+                    .IsRequired(false)
+                    .HasColumnType("VARCHAR(255)");
+
+                e.Property(emp => emp.Rg)
+                    .IsRequired(false)
+                    .HasColumnType("VARCHAR(9)");
+
+                e.Property(emp => emp.IdDepartment)
+                    .IsRequired(false);
+
             });
         }
-
     }
 }

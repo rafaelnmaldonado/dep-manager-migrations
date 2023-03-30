@@ -4,21 +4,17 @@ namespace dep_manager_singleton.Entities
     {
         public Employee()
         {
-            Id = Guid.NewGuid();
-            Name = "";
-            Picture = "";
-            Rg = "";
             IsDeleted = false;
         }
 
-        public Guid Id { get; private set; }
-        public string Name { get; set; }
-        public string Picture { get; set; }
-        public string Rg { get; set; }
-        public Guid IdDepartment { get; set; }
+        public int Id { get; private set; }
+        public string? Name { get; set; }
+        public string? Picture { get; set; }
+        public string? Rg { get; set; }
+        public int? IdDepartment { get; set; }
         public bool IsDeleted { get; private set; }
 
-        public void Update(string name, string picture, string rg, Guid idDep)
+        public void Update(string? name, string? picture, string? rg, int? idDep)
         {
             Name = name;
             Picture = picture;

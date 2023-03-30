@@ -1,11 +1,14 @@
-using dep_manager_singleton.Persistance;
+using dep_manager_singleton.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ManagerDbContext>(o => o.UseInMemoryDatabase("DepartmentsDb"));
+
+var connectionString = builder.Configuration.GetConnectionString("ManagerCs");
+builder.Services.AddDbContext<ManagerDbContext>(o => o.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<ManagerDbContext>(o => o.UseInMemoryDatabase("DepartmentsDb"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

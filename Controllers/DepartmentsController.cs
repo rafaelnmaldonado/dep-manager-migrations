@@ -1,5 +1,5 @@
 ﻿using dep_manager_singleton.Entities;
-using dep_manager_singleton.Persistance;
+using dep_manager_singleton.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +23,7 @@ namespace dep_manager_singleton.Controllers
         /// <response code="200">Sucesso</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var departments = _context.Departments.Where(dep => !dep.IsDeleted).ToList();
 
@@ -40,7 +40,7 @@ namespace dep_manager_singleton.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(int id)
         {
             var department = _context.Departments.SingleOrDefault(dep => dep.Id == id);
 
@@ -83,7 +83,7 @@ namespace dep_manager_singleton.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Update(Guid id, Department input)
+        public IActionResult Update(int id, Department input)
         {
             var department = _context.Departments.SingleOrDefault(dep => dep.Id == id);
 
@@ -107,7 +107,7 @@ namespace dep_manager_singleton.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(int id)
         {
             var department = _context.Departments.SingleOrDefault(dep => dep.Id == id);
 
