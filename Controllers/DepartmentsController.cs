@@ -23,7 +23,7 @@ namespace dep_manager_singleton.Controllers
         /// <response code="200">Sucesso</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
             var departments = _context.Departments.Where(dep => !dep.IsDeleted).ToList();
 
