@@ -6,11 +6,11 @@ namespace dep_manager_singleton.Controllers
 {
     [Route("api/employees")]
     [ApiController]
-    public class EmployeeController : Controller
+    public class EmployeesController : Controller
     {
         private readonly ManagerDbContext _context;
 
-        public EmployeeController(ManagerDbContext context)
+        public EmployeesController(ManagerDbContext context)
         {
             _context = context;
         }
